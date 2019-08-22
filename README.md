@@ -18,6 +18,7 @@ Uma loja de carros usados precisa iniciar o controle dos veículos que estão em
 Elabore um programa em java que consiga receber e listar os carros cadastrados no estoque da loja. Quando um carro é vendido ele deve ser excluído do estoque.
 
 **O grupo deve ser composto por no máximo três(3) pessoas**
+
 **O valor da atividade é de: 0,5 pontos**
 
 <h2 align="center">
