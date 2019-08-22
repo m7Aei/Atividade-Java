@@ -10,5 +10,21 @@ import Database.ConnectionFactory;
 import Models.Locadora;
 
 public class LocadoraController {
-    
+    public void store (Locadora locarCarro) {}
+
+    public List<Locadora> index () {
+        List<Locadora> listarCarros = new ArrayList<>();
+
+        return listarCarros;
+    }
+
+    public List<Locadora> show () {
+        List<Locadora> listarCarro = new ArrayList<>();
+
+        return listarCarro;
+    }
+
+    public void update (Locadora updateCarro) {}
+
+    public void delete (Locadora deletarCarro) {}
 }
