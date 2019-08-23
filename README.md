@@ -19,8 +19,8 @@ Elabore um programa em java que consiga receber e listar os carros cadastrados n
 
 **Requisitos mínimos do projeto :rage2:**
 
-- [ ] É obrigatório ser feito em java :rage4:
-- [ ] É necessário o uso de banco de dados :goberserk:
+- [X] É obrigatório ser feito em java :rage4:
+- [X] É necessário o uso de banco de dados :goberserk:
  
 **O grupo deve ser composto por no máximo três(3) pessoas**
 
