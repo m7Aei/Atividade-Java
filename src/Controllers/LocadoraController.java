@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import Database.ConnectionFactory;
 import Models.Locadora;
+import com.mysql.jdbc.ConnectionFeatureNotAvailableException;
 
 public class LocadoraController {
     public void store (Locadora locarCarro) {
@@ -135,7 +136,25 @@ public class LocadoraController {
             JOptionPane.showMessageDialog(null, "Desculpe, houve um erro ao atualizar as informações!");
         } finally {
             ConnectionFactory.closeConnection(connect, stmt);
+        }
     }
 
-    public void delete (Locadora deletarCarro) {}
+    public void destroy (Locadora deleteCarro) {
+        Connection connect = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = connect.prepareStatement("DELETE FROM carros WHERE id = ?");
+
+            stmt.setInt(1, deleteCarro.getId());
+
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Informações excluídas com sucesso");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Desculpe, houve um erro ao excluir as informações!");
+        } finally {
+            ConnectionFactory.closeConnection(connect, stmt);
+        }
+    }
 }
