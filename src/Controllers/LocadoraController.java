@@ -78,7 +78,39 @@ public class LocadoraController {
     }
 
     public List<Locadora> show () {
+        Connection connect = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet results = null;
+
         List<Locadora> listarCarro = new ArrayList<>();
+
+        try {
+            stmt = connect.prepareStatement("SELECT * FROM carros WHERE placa LIKE ?");
+            stmt.setString(1, "%" + placa + "%");
+            results = stmt.executeQuery();
+
+            while (results.next()) {
+                Locadora buscarCarro = new Locadora();
+
+                buscarCarro.setId(results.getInt("id"));
+                buscarCarro.setMarca(results.getString("marca"));
+                buscarCarro.setModelo(results.getString("modelo"));
+                buscarCarro.setAno(results.getInt("ano"));
+                buscarCarro.setCor(results.getString("cor"));
+                buscarCarro.setMotorizacao(results.getDouble("motorização"));
+                buscarCarro.setQuilometragem(results.getDouble("quilometragem"));
+                buscarCarro.setValorVeiculo(results.getDouble("valorVeículo"));
+                buscarCarro.setQtdPortas(results.getInt("qtdPortas"));
+                buscarCarro.setDonoAtual(results.getString("donoAtual"));
+                buscarCarro.setPlaca(results.getString("placa"));
+
+                listarCarro.add(buscarCarro);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar o carro!");
+        } finally {
+            ConnectionFactory.closeConnection(connect, stmt, results);
+        }
 
         return listarCarro;
     }
