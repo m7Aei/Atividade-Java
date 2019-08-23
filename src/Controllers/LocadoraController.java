@@ -115,7 +115,27 @@ public class LocadoraController {
         return listarCarro;
     }
 
-    public void update (Locadora updateCarro) {}
+    public void update (Locadora updateCarro) {
+        Connection connect = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = connect.prepareStatement("UPDATE carros SET marca = ?, modelo = ?, cor = ?, donoAtual = ? WHERE id = ?");
+
+            stmt.setString(1, updateCarro.getMarca());
+            stmt.setString(2, updateCarro.getModelo());
+            stmt.setString(3, updateCarro.getCor());
+            stmt.setString(4, updateCarro.getDonoAtual());
+            stmt.setInt(5, updateCarro.getId());
+
+            stmt.executeQuery();
+
+            JOptionPane.showMessageDialog(null, "As informações foram atualizadas com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Desculpe, houve um erro ao atualizar as informações!");
+        } finally {
+            ConnectionFactory.closeConnection(connect, stmt);
+    }
 
     public void delete (Locadora deletarCarro) {}
 }
