@@ -87,7 +87,7 @@ public class LocadoraController {
 
         try {
             stmt = connect.prepareStatement("SELECT * FROM carros WHERE placa LIKE ?");
-            stmt.setString(1, "%" + placa + "%");
+            stmt.setString(1, "% placa %");
             results = stmt.executeQuery();
 
             while (results.next()) {
